@@ -58,8 +58,8 @@ async function removeCart(id) {
         });
         if (res.status == 200) {
             let json = await res.json();
+            document.getElementById('cart-quantity').innerText = `(${json.quantity})`;
             if (json.quantity) {
-                document.getElementById('cart-quantity').innerText = `(${json.quantity})`;
                 document.getElementById('subtotal').innerText = `$${json.subtotal}`;
                 document.getElementById('total').innerText = `$${json.total}`;
                 document.getElementById(`product${id}`).remove();
@@ -83,10 +83,11 @@ async function clearCart() {
                 'Accept': 'application/json'
             }
         });
-
-        document.getElementById('cart-quantity').innerText = "0";
-        document.querySelector('.cart-page .container').innerHTML = `<div class="text-center border py-3">
-        <h3>Your cart is empty!</h3></div>`
+        if (res.status == 200) {
+            document.getElementById('cart-quantity').innerText = "0";
+            document.querySelector('.cart-page .container').innerHTML = `<div class="text-center border py-3">
+            <h3>Your cart is empty!</h3></div>`
+        }
     }
 }
 

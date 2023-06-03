@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,7 +19,6 @@ const { createClient } = require('redis');
 
 const passport = require('./controllers/passport');
 const flash = require('connect-flash');
-
 
 // cau hinh public static folder
 app.use(express.static(__dirname + '/public'))
