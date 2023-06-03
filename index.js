@@ -14,7 +14,7 @@ const redisClient = createClient({
     url: process.env.REDIS_URL
 });
 
-redisClient.connect().catch(console.error);
+// redisClient.connect().catch(console.error);
 
 const passport = require('./controllers/passport');
 const flash = require('connect-flash');
@@ -45,7 +45,7 @@ app.use(express.urlencoded({ extended: false }));
 // cau hinh session 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    store: new redisStore({ client: redisClient }),
+    // store: new redisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
     cookie: {
